@@ -1,0 +1,166 @@
+public cloud - ex: amazon , google or azure
+private cloud : pivotal cloudfoundry 
+
+
+
+aws is a public cloud 
+
+
+when you create an aws account is its regular account 
+it a comes a default vpc 
+
+
+Landing zone: landng zone is an older verison of control 
+    - orgnization id 
+    - OU's was there
+    - but there was no custimizations pipeline 
+    - NO centralized aws config aggregator 
+    - NO centralized cloud trail logs 
+    - NO Centralized guardduty 
+   - scp 
+   - guardrails 
+   - backup policies 
+   - Tagging policies 
+
+Brownfield is landing zone 
+
+
+Greenfield is control tower
+
+Control tower:
+
+- orgnization id 
+- OU's - each ou will have uniq id and we can name it
+- there was no custimizations pipeline 
+     it is used to attach guardrails, scp, rcp and tagging policies to OU's right after an aws account created
+     it usess aws native tools - code commit, code build and code pipeline 
+     code commit is now depricated but only availabe to old accounts which already have code commit repo's 
+
+- Aws account factory - used create new aws accounts - account factoru will use aws service catalog to create the new aws account 
+- control tower will create two aws accounts 
+    - Audit 
+       - centralied config aggregator - delegate account for config 
+       - Centrzlied Guardduty         - - delegate account for guardduty 
+       - Centralized Securityhub      - - delegate account for securityhub  
+       - Centralized WAF              - delegate account for waf 
+    - Log archive 
+       centrzlied s3 bucket 
+      - cloudtrail logs form all the memebr accounts accounts 
+      - vpcflows logs from all the memebr accounts 
+      - config data 
+- centralized aws config aggregator 
+- centralized cloud trail logs 
+- Centralized guardduty 
+- scp 
+- guardrails - 3 types --preventive,detective, - these are nothing but aws config rules 
+- rcp - resource control policies - new service introduced in 2025
+- backup policies -
+   - backup policies will be creatd in the parent account, attacthed them to OU's 
+- Tagging policies 
+   - tagging policies will be creatd in the parent account, attacthed them to OU's 
+
+
+
+Governance items:
+
+- Service catalog 
+  - delegate account
+  - portfolios 
+     - networking - networking related 
+     - Security   - iam role, user, policies and groups
+     - reference arch - remain all aws services 
+     - portfolios will be shared to all the member accounts 
+
+Aws marketplace 
+   - Delegate account 
+   - user will submit the request to onboard the product 
+   - the request will come to delegate account 
+   - our team will send the product terms and conditions to GRC(goverace risk complince )/TPRM(Third party risk management) team 
+   - GRC/TPRM will work with legal team to review contracts and terms 
+   - once approved from above both teams , then we will add the product to markerplace
+   - we will add approved list of products form market place 
+   - once product is purchaed and subcrbed, the license will be shared to the request account only using aws license manager(not Saas prodcuts).
+
+Aws license manager: delegate account 
+   - private marketplace and license manager will be in the same account 
+   - tracks the usage subcribed products 
+
+GAMI(glodenAMI):
+
+to build new goldern amis:
+  - Packer (hashicrop)
+  - aws ec2 image builder 
+   Falours:
+
+    amazon linux2 - security agents naming prisma defender, cloudwatch agent and monitoring agent 
+    amaaonz linux3 - security agents naming prisma defender, cloudwatch agent and monitoring agent 
+    redhat         - security agents naming prisma defender, cloudwatch agent and monitoring agent  
+    centos         - security agents naming prisma defender, cloudwatch agent and monitoring agent 
+    ubuntu        - security agents naming prisma defender, cloudwatch agent and monitoring agent 
+    Debian         - security agents naming prisma defender, cloudwatch agent and monitoring agent 
+    rockylinux     - security agents naming prisma defender, cloudwatch agent and monitoring agent 
+    EKS AMI        - security agents naming prisma defender, cloudwatch agent and monitoring agent 
+    ECS AMI        - security agents naming prisma defender, cloudwatch agent and monitoring agent 
+    EMR 
+
+- each of these ami's will be scanned by devsecops team using primsa 
+- once the reports are clear with no bugs or issues, then we will share the ami to all the member accounts to use 
+- every quarter a new version of GAMI will be released for all the linux falours, eks abd ecs
+- each ami will be tagged with Version of GAMI for tracking and reporting 
+
+    ex: 
+
+
+
+budgets: Delegeate accounts is control tower account 
+    
+   each account will set with budget amount, when its used about 80 % an notificatin being to account owner, another notification once it reached to 100 %.
+
+
+Cost anamoly Detection: Delegate account will be control tower account 
+
+ cost anamoly detection uses cost explorer cur report to find the cost anamolies 
+
+
+ 
+
+Config:
+
+DNS: 
+- core-dns is the deletegate account 
+- resolver rules will be shared to all the member accounts using ram (resource access manager)
+
+
+core Networking: core-network-services account is the delegate account
+
+- Direct connect 
+- Direct gateway
+- Transit Gateway
+- Transit routetables
+- STNO 
+- aws site-site-vpn
+
+Guardy Duty: 
+
+Security HUb 
+
+WAF
+
+Backup 
+
+Tagging 
+
+Compute optimizer: 
+-  delegate account - core-sharedservices 
+
+S3 lens:
+- delegate account - core-sharedservices 
+
+Patching with SSM:
+- delegate account - core-sharedservices 
+
+
+
+
+
+
