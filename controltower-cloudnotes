@@ -163,4 +163,24 @@ Patching with SSM:
 
 
 
+new aws provision process
+architecture diagram
+approval from sat commitee
+sat includes cloud/platform arch, security architecture, netwiorking, grc/tprm
+
+
+
+streaming arch example
+contact center example
+microservices exmple
+monolithic
+event driven 
+serverless 
+datapipelines and data warehouse
+
+kafka
+splunk
+
+
+
 
