@@ -17,10 +17,16 @@ Landing zone: landng zone is an older verison of control
     - NO centralized aws config aggregator 
     - NO centralized cloud trail logs 
     - NO Centralized guardduty 
+    - NO iam identity center
+    - No centralized config aggregator 
+    - 
    - scp 
    - guardrails 
    - backup policies 
    - Tagging policies 
+
+
+
 
 Brownfield is landing zone 
 
@@ -46,8 +52,17 @@ Control tower:
     - Log archive 
        centrzlied s3 bucket 
       - cloudtrail logs form all the memebr accounts accounts 
+         year/month/date/file
       - vpcflows logs from all the memebr accounts 
+         year/month/date/file
       - config data 
+         year/month/date/file
+      - SSM user login
+        year/month/date/file
+
+
+
+
 - centralized aws config aggregator 
 - centralized cloud trail logs 
 - Centralized guardduty 
@@ -177,6 +192,8 @@ monolithic
 event driven 
 serverless 
 datapipelines and data warehouse
+video streaming - s3, cloudfront 
+    - aws element media package 
 
 kafka
 splunk
